@@ -6,18 +6,26 @@ var allPlayers;
 var distance = 0;
 var database;
 
+var obst4; 
+var obsGroup4;
+
+var obst2; 
+var obs2Group;
+
+var obst1; 
+var obs1Group;
+
+var obst3; 
+var obsGroup3;
+
 var form, player, game;
 
-var cars, car1, car2, car3, car4;
+var players, player1, player2, player3, player4;
 
-var track, car1_img, car2_img, car3_img, car4_img;
+var track;
 
 function preload(){
   track = loadImage("../images/track.jpg");
-  car1_img = loadImage("../images/car1.png");
-  car2_img = loadImage("../images/car2.png");
-  car3_img = loadImage("../images/car3.png");
-  car4_img = loadImage("../images/car4.png");
   ground = loadImage("../images/ground.png");
 }
 
@@ -41,4 +49,62 @@ function draw(){
   if(gameState === 2){
     game.end();
   }
+  if (keyDown("space")){
+    players.velocityY+=10;
+  }
+  players.velocityY+=0.8;
+
+  spawnObs1();
+  spawnObs2();
+  spawnObs3();
+  spawnObs4();
+
+  if (obs1Group.isTouching(player4)){
+    game.update(1);
+  }
+
+  if (obs2Group.isTouching(player1)){
+    game.update(1);
+  }
+
+  if (obs3Group.isTouching(player2)){
+    game.update(1);
+  }
+
+  if (obs4Group.isTouching(player3)){
+    game.update(1);
+  }
 }
+
+function spawnObs1(){
+  if (frameCount%60==0){
+    obst= createSprite(windowWidth+50,100);
+    obst.velocitX=6; 
+    obsGroup.add(obst);
+  }
+}
+
+function spawnObs2(){
+  if (frameCount%60==0){
+    obst1= createSprite(windowWidth+50,300);
+    obst1.velocitX=6; 
+    obs1Group.add(obst1);
+  }
+}
+
+function spawnObs3(){
+  if (frameCount%60==0){
+    obst2= createSprite(windowWidth+50,500);
+    obst2.velocitX=6; 
+    obs2Group.add(obst2);
+  }
+}
+
+function spawnObs4(){
+  if (frameCount%60==0){
+    obst3= createSprite(windowWidth+50,700);
+    obst3.velocitX=6; 
+    obsGroup3.add(obst3);
+  }
+}
+

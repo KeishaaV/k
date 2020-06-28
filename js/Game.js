@@ -29,15 +29,15 @@ class Game {
       form.display();
     }
 
-    car1 = createSprite(100,200);
-    car1.addImage("car1",car1_img);
-    car2 = createSprite(300,200);
-    car2.addImage("car2",car2_img);
-    car3 = createSprite(500,200);
-    car3.addImage("car3",car3_img);
-    car4 = createSprite(700,200);
-    car4.addImage("car4",car4_img);
-    cars = [car1, car2, car3, car4];
+    player1 = createSprite(200,300);
+    //player1.addImage("player1",player1_img);
+    player2 = createSprite(200,500);
+    //player2.addImage("player2",player2_img);
+    player3 = createSprite(200,700);
+    //player3.addImage("player3",player3_img);
+    player4 = createSprite(200,100);
+    //player4.addImage("player4",player4_img);
+    players = [player1, player2, player3, player4];
   }
 
   play(){
@@ -54,7 +54,7 @@ class Game {
       //index of the array
       var index = 0;
 
-      //x and y position of the cars
+      //x and y position of the players
       var x = 175 ;
       var y;
 
@@ -62,12 +62,10 @@ class Game {
         //add 1 to the index for every loop
         index = index + 1 ;
 
-        //position the cars a little away from each other in x direction
-        x = x + 200;
-        //use data form the database to display the cars in y direction
-        y = displayHeight - allPlayers[plr].distance;
-        cars[index-1].x = x;
-        cars[index-1].y = y;
+        y= y + 200;
+        x = displayWidth - allPlayers[plr].distance;
+        players[index-1].x = x;
+        players[index-1].y = y;
        // console.log(index, player.index)
 
        
@@ -75,9 +73,9 @@ class Game {
           stroke(10);
           fill("red");
           ellipse(x,y,60,60);
-          cars[index - 1].shapeColor = "red";
-          camera.position.x = displayWidth/2;
-          camera.position.y = cars[index-1].y;
+          players[index - 1].shapeColor = "red";
+          camera.position.y= displayHeight/2;
+          camera.position.x = players[index-1].x;
         }
        
         //textSize(15);
